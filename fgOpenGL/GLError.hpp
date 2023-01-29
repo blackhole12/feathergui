@@ -36,6 +36,12 @@
     return __e.error().log(backend);            \
   }
 
+#define LOG_AND_IGNORE_ERROR(backend, ...)      \
+  if(auto __e = (__VA_ARGS__); __e.has_error()) \
+  {                                             \
+    __e.error().log(backend);                   \
+  }
+
 namespace GL {
   enum GL_Err
   {
